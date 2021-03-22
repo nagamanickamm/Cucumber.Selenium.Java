@@ -1,0 +1,54 @@
+plugins {
+    id 'java'
+}
+
+group 'org.playtech.bdd'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.6.0'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine'
+}
+
+test {
+    useJUnitPlatform()
+}
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.6.0'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine'
+    compile 'io.cucumber:cucumber-java:6.8.1'
+    compile 'io.cucumber:cucumber-junit:6.8.1'
+    // https://mvnrepository.com/artifact/io.github.bonigarcia/webdrivermanager
+    implementation group: 'io.github.bonigarcia', name: 'webdrivermanager', version: '4.3.1'
+
+    // https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-java
+    implementation group: 'org.seleniumhq.selenium', name: 'selenium-java', version: '4.0.0-beta-2'
+
+}
+
+configurations {
+    cucumberRuntime {
+        extendsFrom testImplementation
+    }
+}
+
+task cucumberTest() {
+    dependsOn assemble, testClasses
+    doLast {
+        javaexec {
+            main = "io.cucumber.core.cli.Main"
+            // systemProperties['configFileName'] = "env0_config.properties" (this is required for changing the environment in future)
+            systemProperties['browser'] = browser
+            classpath = configurations.cucumberRuntime + sourceSets.main.output + sourceSets.test.output
+            args = ['--plugin', 'pretty',
+                    '--glue', 'com.test.stepdefinition',
+                    'src/test/resources']
+        }
+    }
+}
