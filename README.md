@@ -7,6 +7,7 @@ Code Structure:
 3. Page files are java.com.framework.utils.pages package
 4. Main driver initialisation java.com.test.framework.utils.driver package
 5. Common driver functions initialisation java.com.test.framework.utils.common package
+6. build.gradle contains all the dependencies libraries and has the tasks for executing the tests
 
 
 Setup & test:
@@ -22,6 +23,12 @@ Setup & test:
 8. If you have any issues with browser parameter then please comment systemProperties['browser'] = browser in build.gradle and it should take from properties file
    Notes:
 - Sample Cloud report - https://reports.cucumber.io/reports/f4bc2fca-1ab1-4aad-8ca6-6c5a1fd95686
+
+
+Easy steps:
+1. Simply download the code as ZIP from git repo https://github.com/nagamanickamm/org.playtech.bdd
+2. Go to the project folder (Make sure gradle is installed on your machine)
+3. Enter : gradle cucumber -Pbrowser=firefox (tested on firefox and chrome)
 
 
 Further enhancements:
