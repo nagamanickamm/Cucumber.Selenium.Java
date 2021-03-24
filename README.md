@@ -24,11 +24,16 @@ Setup & test:
    Notes:
 - Sample Cloud report - https://reports.cucumber.io/reports/f4bc2fca-1ab1-4aad-8ca6-6c5a1fd95686
 
+9. Alternatively run only selected tags using below
+   gradle cucumberTest -Pbrowser=firefox -Ptags="@Smoke or @NoSmoke"
+
 
 Easy steps:
 1. Simply download the code as ZIP from git repo https://github.com/nagamanickamm/org.playtech.bdd
 2. Go to the project folder (Make sure gradle is installed on your machine)
 3. Enter : gradle cucumber -Pbrowser=firefox (tested on firefox and chrome)
+
+1. Right click on Runner and execute in IntelliJ
 
 
 Further enhancements:

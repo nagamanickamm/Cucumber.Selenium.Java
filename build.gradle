@@ -38,6 +38,8 @@ configurations {
     }
 }
 
+def tags = (findProperty('tags') == null) ? 'not @Ignore' : findProperty('tags') + ' and not @Ignore'
+
 task cucumberTest() {
     dependsOn assemble, testClasses
     doLast {
@@ -48,6 +50,7 @@ task cucumberTest() {
             classpath = configurations.cucumberRuntime + sourceSets.main.output + sourceSets.test.output
             args = ['--plugin', 'pretty',
                     '--glue', 'com.test.stepdefinition',
+                    '--tags', "${tags}",
                     'src/test/resources']
         }
     }
