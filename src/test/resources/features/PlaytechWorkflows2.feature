@@ -1,5 +1,6 @@
 Feature: Validate given tests on Playtech.com
 
+  @NoSmoke
   Scenario: Customers below 18 years are not allowed to enter Playtech.com
     Given Im on Playtech homepage
     When I see Age Verification Alert with heading as "Welcome to the Playtech website"

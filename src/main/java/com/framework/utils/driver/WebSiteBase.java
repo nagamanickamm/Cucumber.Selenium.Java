@@ -2,6 +2,7 @@ package com.framework.utils.driver;
 
 import com.framework.utils.common.WebMessages;
 import io.github.bonigarcia.wdm.WebDriverManager;
+import org.apache.commons.lang3.SystemUtils;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
@@ -41,6 +42,9 @@ public class WebSiteBase {
         System.out.println("Browser Selected => " + browserName);
 
         if (browserName.equalsIgnoreCase("chrome")) {
+            if(SystemUtils.IS_OS_LINUX) {
+                WebDriverManager.chromedriver().browserPath("/opt/hostedtoolcache/chromium/latest/x64/chrome");
+            }
             WebDriverManager.chromedriver().setup();
             driver = new ChromeDriver();
         } else if (browserName.equalsIgnoreCase("firefox")) {

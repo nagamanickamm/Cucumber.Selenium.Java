@@ -18,6 +18,10 @@ test {
     useJUnitPlatform()
 }
 
+task regressionTests(type: Test) {
+    include '**/Runner*'
+}
+
 dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.12'
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.6.0'
@@ -30,6 +34,7 @@ dependencies {
     // https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-java
     implementation group: 'org.seleniumhq.selenium', name: 'selenium-java', version: '4.0.0-beta-2'
 
+    implementation group: 'io.cucumber', name: 'cucumber-testng', version: '6.10.2'
 }
 
 configurations {
@@ -48,8 +53,26 @@ task cucumberTest() {
             // systemProperties['configFileName'] = "env0_config.properties" (this is required for changing the environment in future)
             systemProperties['browser'] = browser
             classpath = configurations.cucumberRuntime + sourceSets.main.output + sourceSets.test.output
-            args = ['--plugin', 'pretty',
+            args = ['--plugin', 'rerun:target/failed.txt',
                     '--glue', 'com.test.stepdefinition',
+                    '--threads', 2,
+                    '--tags', "${tags}",
+                    'src/test/resources']
+        }
+    }
+}
+
+task cucumberTestRerun() {
+    dependsOn assemble, testClasses
+    doLast {
+        javaexec {
+            main = "io.cucumber.core.cli.Main"
+            // systemProperties['configFileName'] = "env0_config.properties" (this is required for changing the environment in future)
+            systemProperties['browser'] = browser
+            classpath = configurations.cucumberRuntime + sourceSets.main.output + sourceSets.test.output
+            args = ['--plugin', 'rerun:target/failed.txt',
+                    '--glue', 'com.test.stepdefinition',
+                    '--threads', 2,
                     '--tags', "${tags}",
                     'src/test/resources']
         }
