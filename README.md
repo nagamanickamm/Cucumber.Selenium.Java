@@ -16,7 +16,7 @@ Setup & test:
 3. Open the project and select build.gradle using your choice of IDE (Note: This project is build using IntelliJ)
    Import the project as gradle project
 4. Go to Terminal, from project root (ex:'org.playtech.bdd') and enter "gradle --refresh-dependencies" (without quotes)
-5. type "gradle cucumber -Pbrowser=firefox" (change your browser accordingly)
+5. type "gradle cucumberTest -Pbrowser=firefox" (change your browser accordingly)
 6. When the test is a completed click on the cucumber report link shown in the terminal
    or go to https://reports.cucumber.io/report-collections/4e61ccdb-f913-4909-bee5-ef24ce5695a6
 7. Alternatively you can execute from run command in intelliJ or any iDE, please add -Dbrowser=firefox in VM options
@@ -31,7 +31,7 @@ Setup & test:
 Easy steps:
 1. Simply download the code as ZIP from git repo https://github.com/nagamanickamm/org.playtech.bdd
 2. Go to the project folder (Make sure gradle is installed on your machine)
-3. Enter : gradle cucumber -Pbrowser=firefox (tested on firefox and chrome)
+3. Enter : gradle cucumberTest -Pbrowser=firefox (tested on firefox and chrome)
 
 1. Right click on Runner and execute in IntelliJ
 
