@@ -49,6 +49,7 @@ public class WebSiteBase {
                 ChromeOptions options = new ChromeOptions();
                 options.addArguments("--disable-dev-shm-usage"); // overcome limited resource problems
                 options.addArguments("--no-sandbox"); // Bypass OS security model
+                options.addArguments("--headless");
                 driver = new ChromeDriver(options);
             }
             else {

@@ -1,3 +1,4 @@
+sudo yum -y remove google-chrome
 search=$(echo `whereis google-chrome`)
 echo "Value of search: $search"
 if [[ $search == "google-chrome:" ]]; then
