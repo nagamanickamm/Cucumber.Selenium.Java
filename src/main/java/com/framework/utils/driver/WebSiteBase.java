@@ -41,6 +41,9 @@ public class WebSiteBase {
         System.out.println("Browser Selected => " + browserName);
 
         if (browserName.equalsIgnoreCase("chrome")) {
+            if(SystemUtils.IS_OS_LINUX) {
+                WebDriverManager.chromedriver().browserPath("/opt/hostedtoolcache/chromium/latest/x64/chrome");
+            }
             WebDriverManager.chromedriver().setup();
             driver = new ChromeDriver();
         } else if (browserName.equalsIgnoreCase("firefox")) {
