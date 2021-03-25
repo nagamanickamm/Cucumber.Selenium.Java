@@ -32,8 +32,11 @@ Easy steps:
 1. Simply download the code as ZIP from git repo https://github.com/nagamanickamm/org.playtech.bdd
 2. Go to the project folder (Make sure gradle is installed on your machine)
 3. Enter : gradle cucumberTest -Pbrowser=firefox (tested on firefox and chrome)
-
+else:
 1. Right click on Runner and execute in IntelliJ
+
+CI/CD:
+This project is added to GITActions continuous run on push and merge https://github.com/nagamanickamm/org.playtech.bdd/actions
 
 
 Further enhancements:
