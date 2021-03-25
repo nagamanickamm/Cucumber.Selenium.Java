@@ -5,6 +5,7 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 import org.apache.commons.lang3.SystemUtils;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
@@ -44,9 +45,17 @@ public class WebSiteBase {
         if (browserName.equalsIgnoreCase("chrome")) {
             if(SystemUtils.IS_OS_LINUX) {
                 WebDriverManager.chromedriver().browserPath("/opt/hostedtoolcache/chromium/latest/x64/chrome");
+                WebDriverManager.chromedriver().linux().setup();
+                ChromeOptions options = new ChromeOptions();
+                options.addArguments("--disable-dev-shm-usage"); // overcome limited resource problems
+                options.addArguments("--no-sandbox"); // Bypass OS security model
+                driver = new ChromeDriver(options);
             }
-            WebDriverManager.chromedriver().setup();
-            driver = new ChromeDriver();
+            else {
+                WebDriverManager.chromedriver().setup();
+                driver = new ChromeDriver();
+            }
+
         } else if (browserName.equalsIgnoreCase("firefox")) {
             WebDriverManager.firefoxdriver().setup();
             driver = new FirefoxDriver();
