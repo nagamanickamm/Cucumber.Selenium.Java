@@ -45,7 +45,7 @@ public class WebSiteBase {
         if (browserName.equalsIgnoreCase("chrome")) {
             if(SystemUtils.IS_OS_LINUX) {
                 WebDriverManager.chromedriver().browserPath("/opt/hostedtoolcache/chromium/latest/x64/chrome");
-                WebDriverManager.chromedriver().linux().setup();
+                WebDriverManager.chromedriver().setup();
                 ChromeOptions options = new ChromeOptions();
                 options.addArguments("--disable-dev-shm-usage"); // overcome limited resource problems
                 options.addArguments("--no-sandbox"); // Bypass OS security model
