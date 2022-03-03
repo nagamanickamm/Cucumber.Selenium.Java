@@ -23,18 +23,14 @@ task regressionTests(type: Test) {
 }
 
 dependencies {
-    testCompile group: 'junit', name: 'junit', version: '4.12'
-    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.6.0'
-    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine'
-    compile 'io.cucumber:cucumber-java:6.8.1'
-    compile 'io.cucumber:cucumber-junit:6.8.1'
+    implementation 'org.junit.jupiter:junit-jupiter-api:5.6.0'
+    implementation 'org.junit.jupiter:junit-jupiter-engine'
+    implementation 'io.cucumber:cucumber-java:7.2.3'
+    implementation 'io.cucumber:cucumber-junit:7.2.3'
+    implementation 'org.seleniumhq.selenium:selenium-java:4.1.2'
     // https://mvnrepository.com/artifact/io.github.bonigarcia/webdrivermanager
     implementation group: 'io.github.bonigarcia', name: 'webdrivermanager', version: '4.3.1'
-
-    // https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-java
-    implementation group: 'org.seleniumhq.selenium', name: 'selenium-java', version: '4.0.0-beta-2'
-
-    implementation group: 'io.cucumber', name: 'cucumber-testng', version: '6.10.2'
+    implementation group: 'io.cucumber', name: 'cucumber-testng', version: '7.2.3'
 }
 
 configurations {
